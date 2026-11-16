@@ -1,0 +1,148 @@
+/* =========================================================
+   TEMA "TIERNO": mismo diseño de cajas, pero redondeado
+   ========================================================= */
+
+/* Tipografías redondas (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+    --fondo: #F4ECFF;        /* lavanda muy clara detrás de las cajas */
+    --radio: 28px;           /* qué tan redondas son las cajas */
+    --espacio: 8px;          /* separación entre cajas (se ve el doble) */
+    --sombra: rgba(91, 33, 182, 0.22);
+}
+
+body {
+    background-color: var(--fondo);
+    font-family: 'Nunito', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h5, .lead, .btn, .badge {
+    font-family: 'Fredoka', 'Nunito', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+/* Un poco de aire alrededor de toda la página */
+.container-fluid {
+    padding: var(--espacio) !important;
+}
+
+/* ---------- Las cajas: esquinas redondas y separadas ----------
+   El borde transparente crea la separación sin cambiar los anchos
+   de las columnas de Bootstrap, y el fondo se recorta por dentro. */
+[class*="caja"] {
+    border: var(--espacio) solid transparent;
+    border-radius: calc(var(--radio) + var(--espacio));
+    background-clip: padding-box !important;
+    overflow: hidden;
+    filter: drop-shadow(0 6px 10px var(--sombra));
+    transition: transform 0.25s ease;
+}
+
+/* Las cajas del menú son como "pastillas" que saltan un poquito */
+.caja1, .caja2, .caja3, .caja4,
+.caja2-nav, .caja3-nav, .caja4-nav {
+    border-radius: 999px;
+}
+
+.caja1:hover, .caja2:hover, .caja3:hover, .caja4:hover,
+.caja2-nav:hover, .caja3-nav:hover, .caja4-nav:hover {
+    transform: translateY(-3px);
+}
+
+/* La imagen principal también va redondeada */
+.row > .col-12:not([class*="caja"]) {
+    padding: var(--espacio);
+}
+
+.row > .col-12:not([class*="caja"]) > img {
+    border-radius: var(--radio);
+    filter: drop-shadow(0 6px 10px var(--sombra));
+}
+
+/* Imágenes dentro de las cajas */
+[class*="caja"] img.rounded,
+[class*="caja"] .rounded {
+    border-radius: 18px !important;
+}
+
+/* ---------- Botones, etiquetas y código ---------- */
+.btn {
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+.btn-lg {
+    padding: 0.6rem 2rem;
+}
+
+.btn-primary {
+    box-shadow: 0 6px 0 #5A189A;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #5A189A;
+}
+
+.btn-link {
+    font-size: 1.05rem;
+}
+
+.badge {
+    border-radius: 999px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px;
+}
+
+code {
+    border-radius: 14px !important;
+}
+
+/* Los íconos se mueven un poquito al pasar el mouse */
+[class*="caja"] img[height],
+[class*="caja"] img[style*="max-height: 3"] {
+    transition: transform 0.25s ease;
+}
+
+[class*="caja"]:hover img[height],
+[class*="caja"]:hover img[style*="max-height: 3"] {
+    transform: scale(1.15) rotate(-6deg);
+}
+
+/* Aire interior para las cajas de texto que no tenían padding */
+[class*="caja"] {
+    padding: 1.25rem;
+}
+
+/* Las cajas que solo tienen una imagen (banners) no llevan padding */
+[class*="caja"]:has(> img) {
+    padding: 0;
+}
+
+/* Menú: texto centrado y sin subrayado en todas las páginas */
+.caja1, .caja2, .caja3, .caja4,
+.caja2-nav, .caja3-nav, .caja4-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+}
+
+.caja1 a, .caja2 a, .caja3 a, .caja4 a,
+.caja1 .btn, .caja2 .btn, .caja3 .btn, .caja4 .btn {
+    text-decoration: none;
+}
+
+/* Íconos un poco más grandes */
+[class*="caja"] img[style*="max-height: 30px"] { max-height: 42px !important; }
+[class*="caja"] img[style*="max-height: 35px"] { max-height: 48px !important; }
+
+/* Box Model: diagramas más grandes y subtítulo legible */
+.caja-imagen-1 img, .caja-imagen-2 img { max-height: 320px !important; }
+.caja-imagen-1 .bg-dark, .caja-imagen-2 .bg-dark { background-color: transparent !important; }
+.caja5 .text-muted { color: #CDB4F0 !important; }
